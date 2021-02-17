@@ -1,11 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
     <div>
       <h1>0227 official page</h1>
-      <button>Home</button>
-      <button data-cy="köp-header">Köp</button>
+      <Link to="/">
+        Home
+      </Link>
+      <Link data-cy="köp-header" to="/köp">
+        Köp
+      </Link>
     </div>
   )
 }

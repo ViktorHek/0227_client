@@ -1,12 +1,17 @@
 import React from "react"
 import Header from './components/Header'
 import Home from './components/Home'
+import {Switch, Route} from 'react-router-dom'
+import Products from './components/Products'
 
 function App() {
   return (
     <>
       <Header/>
-      <Home/>
+      <Switch>
+        <Route exact path='/' component={Home}></Route>
+        <Route exact path='/köp' component={Products}></Route>
+      </Switch>
     </>
   );
 }
