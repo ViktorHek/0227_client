@@ -8,8 +8,8 @@ const Header = () => {
       <Link to="/">
         Home
       </Link>
-      <Link data-cy="köp-header" to="/köp">
-        Köp
+      <Link data-cy="köp-header" to="/products">
+        Produkter
       </Link>
     </div>
   )
