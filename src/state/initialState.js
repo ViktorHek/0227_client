@@ -1,5 +1,5 @@
 const initialState = {
-  projectList: []
+  xyz: {}
 }
 
 export default initialState

@@ -2,11 +2,10 @@ import initialState from './initialState'
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_PRODUCT_INDEX":
-      debugger
+    case "xyz":
       return {
         ...state,
-        productList: action.payload
+        xyz: action.payload
       }
     default:
       return state

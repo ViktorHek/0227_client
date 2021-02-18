@@ -1,14 +1,8 @@
 import axios from 'axios'
 
-const ProductModule = {
-  async index(dispatch) {
-    debugger
-    const response = await axios.get('/products')
-    dispatch({
-      type: 'SET_PRODUCT_INDEX',
-      payload: response.data.products
-    })
-  }
+const ProductModule = async () => {
+  let result = await axios.get('/products')
+  return result.data.products
 }
 
 export default ProductModule

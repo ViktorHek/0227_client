@@ -1,36 +1,29 @@
-import React, {useEffect} from 'react'
-import ProductModule from '../modules/ProductModule'
-import {useDispatch, useSelector} from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import ProductModule from "../modules/ProductModule";
 import ProductCard from './ProductCard'
 
 const Products = () => {
-  const dispatch = useDispatch()
-  const {productList} = useSelector(state => state)
-  // const fetchProducts = async () => {
-  //   debugger
-  //   let result = await ProductModule.index()
-  //   dispatch({type: 'SET_PRODUCT_INDEX', payload: result})
-  // }
-  useEffect(() => {
-    debugger
-    ProductModule.index(dispatch)
-    // fetchProducts()
-  }, [dispatch])
+  const [products, setProducts] = useState([])
 
-  let productIndex
-  productIndex = (
-    <div>
-      {productList.map((product) => {
-        return <ProductCard product={{ ...product }} />
-      })}
-    </div>
-  )
+  const fetchProducts = async () => {
+    let result = await ProductModule()
+    setProducts(result)
+  }
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+
+  let productIndex = products.map((product) => {
+    return (
+      <ul>
+        <ProductCard product={{ ...product }} />
+      </ul>
+    )
+  })
 
   return (
     <>
-      {
-        productList.length ? {productIndex} : <h1>Inget att köpa än. vänta tills nästa relece</h1>
-      }
+      {productIndex && productIndex}
     </>
   )
 }
