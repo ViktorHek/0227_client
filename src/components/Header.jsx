@@ -11,6 +11,9 @@ const Header = () => {
       <Link data-cy="köp-header" to="/products">
         Produkter
       </Link>
+      <Link data-cy="about-header" to="/about">
+        Om 0227
+      </Link>
     </div>
   )
 }
