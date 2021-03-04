@@ -4,14 +4,10 @@ describe('User can successfully', () => {
   })
   it('visit about page', () => {
     cy.get("[data-cy='about-header']").click()
-    cy.get("body").within(() => {
-      cy.get("[data-cy='about-text']").should('contain', 'about to go bananas')
-    })
+    cy.get("body").should('contain', 'about to go bananas')
   })
   it('visit contact page', () => {
     cy.get("[data-cy='contact-header']").click()
-    cy.get("body").within(() => {
-      cy.get("[data-cy='contact-text']").should('contain', 'email: xyz@mail.com')
-    })
+    cy.get("body").should('contain', 'Mail: xyz@mail.com')
   })
 })
