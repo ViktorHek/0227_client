@@ -1,0 +1,16 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "custum sko"
+    },
+    {
+      "id": 2,
+      "title": "tjänst"
+    },
+    {
+      "id": 3,
+      "title": "tavla"
+    }
+  ]
+}
