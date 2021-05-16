@@ -6,6 +6,7 @@ const ProductService = {
     event.preventDefault()
     let headers = JSON.parse(localStorage.getItem('credentials'))
     try {
+      debugger
       let encodedImage
       if (event.target.image_input[0]) {
         encodedImage = await toBase64(event.target.image_input[0])
@@ -24,6 +25,7 @@ const ProductService = {
       event.target.reset()
       alert(response.data.message)
     } catch (error) {
+      debugger
       alert(error.response.data.message)
     }
   }
