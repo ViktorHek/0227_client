@@ -2,10 +2,11 @@ import initialState from './initialState'
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "xyz":
+    case 'SET_CURRENT_USER':
       return {
         ...state,
-        xyz: action.payload
+        currentUser: action.payload,
+        authentication: true,
       }
     default:
       return state

@@ -1,7 +1,6 @@
-describe('user can create a product', () => {
+describe('admin can create a product', () => {
   beforeEach(() => {
-    cy.server()
-    cy.route({
+    cy.intercept({
       method: 'POST',
       url: 'http://localhost:3000/api/auth/sign_in',
       response: 'fixture:user_can_login.json',
@@ -10,7 +9,7 @@ describe('user can create a product', () => {
         access_token: 'acab',
         client: '1337',
         token_type: 'Bearer',
-        expiry: 123456,
+        expiry: '123456',
       },
     })
     cy.visit('/')
@@ -22,7 +21,7 @@ describe('user can create a product', () => {
   })
   describe('successfully', () => {
     it('with a title', () => {
-      cy.route({
+      cy.intercept({
         method: 'POST',
         url: 'http://localhost:3000/api/products',
         response: { message: 'grejen är skapad' },
@@ -43,7 +42,7 @@ describe('user can create a product', () => {
 
   describe('unsuccessfully', () => {
     it('without a title', () => {
-      cy.route({
+      cy.intercept({
         method: 'POST',
         url: 'http://localhost:3000/api/products',
         status: 401,
