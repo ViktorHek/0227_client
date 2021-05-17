@@ -6,7 +6,7 @@ describe('user can login', () => {
     beforeEach(() => {
       cy.intercept(
         'POST',
-        'http://localhost:3000/api/auth/sign_in',
+        '**/sign_in',
         { fixture: 'user_can_login.json' },
         {
           headers: {
@@ -18,6 +18,7 @@ describe('user can login', () => {
           },
         }
       )
+      // 'http://localhost:3000/api/auth/sign_in'
     })
 
     it('with valid credentials', () => {

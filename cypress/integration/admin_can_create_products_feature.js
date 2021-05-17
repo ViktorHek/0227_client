@@ -2,7 +2,7 @@ describe('admin can create a product', () => {
   beforeEach(() => {
     cy.intercept(
       'POST',
-      'http://localhost:3000/api/auth/sign_in',
+      '**/sign_in',
       { fixture: 'user_can_login.json' },
       {
         headers: {
@@ -13,6 +13,7 @@ describe('admin can create a product', () => {
           expiry: 123456,
         },
       }
+      // 'http://localhost:3000/api/auth/sign_in'
     )
     cy.visit('/')
     cy.get("[data-cy='login-form']").within(() => {
@@ -25,8 +26,9 @@ describe('admin can create a product', () => {
     it('with a title', () => {
       cy.intercept(
         'POST',
-        'http://localhost:3000/api/products',
+        '**/products',
         { message: 'grejen är skapad' },
+        // 'http://localhost:3000/api/products'
       )
       cy.get("[data-cy='create-form']").within(() => {
         cy.get("[data-cy='create-title']").type('En sko')
@@ -46,8 +48,9 @@ describe('admin can create a product', () => {
     it('without a title', () => {
       cy.intercept(
         'POST',
-        'http://localhost:3000/api/products',
+        '**/products',
         { message: "title can't be blank" }
+        // 'http://localhost:3000/api/products'
       )
       cy.get("[data-cy='create-form']").within(() => {
         cy.get("[data-cy='create-btn']").click()
