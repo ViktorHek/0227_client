@@ -4,20 +4,22 @@ describe('user can login', () => {
   })
   describe('successfully', () => {
     beforeEach(() => {
-      cy.server()
-      cy.route({
-        method: 'POST',
-        url: 'http://localhost:3000/api/auth/sign_in',
-        response: 'fixture:user_can_login.json',
-        headers: {
-          uid: 'user@example.com',
-          access_token: 'acab',
-          client: '1337',
-          token_type: 'Bearer',
-          expiry: 123456,
-        },
-      })
+      cy.intercept(
+        'POST',
+        'http://localhost:3000/api/auth/sign_in',
+        { fixture: 'user_can_login.json' },
+        {
+          headers: {
+            uid: 'user@example.com',
+            access_token: 'acab',
+            client: '1337',
+            token_type: 'Bearer',
+            expiry: 123456,
+          },
+        }
+      )
     })
+
     it('with valid credentials', () => {
       cy.get("[data-cy='login-form']").within(() => {
         cy.get("[data-cy='email']").type('user@example.com')
@@ -35,10 +37,10 @@ describe('user can login', () => {
         cy.get("[data-cy='password']").type('wrong')
         cy.get("[data-cy='login-button']").click()
       })
-      cy.get("[data-cy='create-form']").should('not.be.visible')
+      cy.get("[data-cy='login-form']").should('be.visible')
     })
     cy.on('window:alert', (str) => {
-      expect(str).to.equal("You Shall Not Pass!!")
+      expect(str).to.equal('You Shall Not Pass!!')
     })
   })
 })
