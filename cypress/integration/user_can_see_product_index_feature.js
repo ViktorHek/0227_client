@@ -1,12 +1,8 @@
 describe('User can see list of products', () => {
   beforeEach(() => {
-    cy.server()
-    cy.route({
-      method: 'GET',
-      url: 'http://localhost:3000/api/products',
-      response: 'fixture:product_index.json',
-    })
     cy.visit('/')
+    cy.intercept('GET', '**/products', {fixture: 'product_index.json'})
+    //'http://localhost:3000/api/products' 
   })
   it('successfully', () => {
     cy.get("[data-cy='köp-header']").click()
